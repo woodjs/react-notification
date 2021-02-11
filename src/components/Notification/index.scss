@@ -1,0 +1,141 @@
+@import '../../css/variables';
+
+.notifications {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  transition: 0.2s;
+}
+
+.notif {
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  animation: SlideInRight 0.7s;
+  animation-fill-mode: forwards;
+  width: 300px;
+  margin-bottom: 15px;
+
+  &--exit {
+    animation: SlideOutRight 0.7s;
+    animation-fill-mode: forwards;
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__message {
+    padding: 0.75rem 1.25rem;
+  }
+
+  &__bar {
+    width: 100%;
+    height: 4px;
+  }
+
+  &-close {
+    padding-right: 5px;
+    cursor: pointer;
+
+    &__btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        display: block;
+        top: 50%;
+        left: 50%;
+      }
+
+      &::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+
+  &-success {
+    background: $light-success;
+    color: $success;
+  }
+
+  &-warn {
+    background: $light-warn;
+    color: $warn;
+  }
+
+  &-danger {
+    background: $light-danger;
+    color: $danger;
+  }
+
+  &-success &__bar {
+    background: $success;
+  }
+
+  &-warn &__bar {
+    background: $warn;
+  }
+
+  &-danger &__bar {
+    background: $danger;
+  }
+
+  &-success &-close__btn {
+    &::before,
+    &::after {
+      background: $success;
+    }
+  }
+
+  &-warn &-close__btn {
+    &::before,
+    &::after {
+      background: $warn;
+    }
+  }
+
+  &-danger &-close__btn {
+    &::before,
+    &::after {
+      background: $danger;
+    }
+  }
+}
+
+@keyframes SlideInRight {
+  0% {
+    margin-left: 120%;
+    opacity: 0;
+  }
+
+  100% {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes SlideOutRight {
+  0% {
+    margin-left: 0;
+    opacity: 1;
+  }
+  100% {
+    margin-left: 120%;
+    opacity: 0;
+  }
+}
